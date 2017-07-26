@@ -1,5 +1,5 @@
-CREATE DATABASE task_bd;
-USE task_bd;
+CREATE DATABASE task_db;
+USE task_db;
 
 CREATE TABLE tasks
 (
