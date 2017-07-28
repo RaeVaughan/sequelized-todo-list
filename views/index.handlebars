@@ -12,7 +12,7 @@
 
 			<ul>
 			  {{#each tasks}}
-			    
+			  	{{#unless this.completed}}
 			      <li>
 			        {{this.task_name}}
 
@@ -20,10 +20,9 @@
 			          <input type="hidden" name="completed" value="true">
 			          <button type="submit">Complete</button>
 			        </form>
-
 			        
 			      </li>
-			    
+			    {{/unless}}
 			  {{/each}}
 			</ul>
 		</div>
@@ -34,21 +33,24 @@
 
 			<ul>
 			  {{#each tasks}}
-			    
+			    {{#if this.completed}}
 			      <li>
-			        {{this.name}}
+			        {{this.task_name}}
 
 			        <form action="/{{this.id}}?_method=PUT" method="POST">
-			          <input type="hidden" name="sleepy" value="false">
+			          <input type="hidden" name="completed" value="false">
 			        </form>
 
 			        
 			      </li>
-			    
+			    {{/if}}
 			  {{/each}}
 			</ul>
+
 		</div>
 	</div>
+
+
 
 	<!-- div for form for user to input more tasks -->
 	<div class="row" id="form">
