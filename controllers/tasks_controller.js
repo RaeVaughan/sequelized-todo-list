@@ -5,18 +5,21 @@ var task = require("../models/tasks.js");
 var router = express.Router();
 
 // Create all routes and set up logic within those routes where required
+
+//get all tasks
 router.get("/", function(req, res) {
-  task.selectAll(function(data) {
+  task.all(function(data) {
     var hbsObject = {
       tasks: data
     };
-    console.log(hbsObject);
+    //console.log("object: ", hbsObject);
     res.render("index", hbsObject);
   });
 });
 
+//insert a task
 router.post("/", function(req, res) {
-  tasks.insertOne([
+  tasks.create([
     "task_name", "completed"
   ], [
     req.body.task_name, req.body.completed
@@ -25,12 +28,13 @@ router.post("/", function(req, res) {
   });
 });
 
+//update a task
 router.put("/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
 
-  task.updateOne({
+  task.update({
     completed: req.body.completed
   }, condition, function() {
     res.redirect("/");
