@@ -12,14 +12,14 @@ router.get("/", function(req, res) {
     var hbsObject = {
       tasks: data
     };
-    //console.log("object: ", hbsObject);
+    console.log("object: ", hbsObject);
     res.render("index", hbsObject);
   });
 });
 
 //insert a task
 router.post("/", function(req, res) {
-  tasks.create([
+  task.create([
     "task_name", "completed"
   ], [
     req.body.task_name, req.body.completed

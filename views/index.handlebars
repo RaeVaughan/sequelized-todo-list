@@ -1,18 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<!-- viewport link -->
-	<meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
-	<!-- bootstrap link -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<!-- local css link -->
-	<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-	<!-- gooogle fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<title>To Do</title>
-</head>
-	<body>
-		{{{ body }}}
-	</body>
-</html>
+<!-- header div -->
+<div id="header">
+	<h1>To-Do List</h1>
+</div>
+
+<!-- container for everything but header -->
+<div class="container">
+	<div class="row">
+		<!-- div for tasks needing to be completed -->
+		<div class="col-md-6">
+			<h2>To do:</h2>
+
+			<ul>
+			  {{#each tasks}}
+			    
+			      <li>
+			        {{this.task_name}}
+
+			        <form action="/{{this.id}}?_method=PUT" method="POST">
+			          <input type="hidden" name="completed" value="true">
+			          <button type="submit">Complete</button>
+			        </form>
+
+			        
+			      </li>
+			    
+			  {{/each}}
+			</ul>
+		</div>
+
+		<!-- div for completed tasks -->
+		<div class="col-md-6">
+			<h2>Completed:</h2>
+
+			<ul>
+			  {{#each tasks}}
+			    
+			      <li>
+			        {{this.name}}
+
+			        <form action="/{{this.id}}?_method=PUT" method="POST">
+			          <input type="hidden" name="sleepy" value="false">
+			        </form>
+
+			        
+			      </li>
+			    
+			  {{/each}}
+			</ul>
+		</div>
+	</div>
+
+	<!-- div for form for user to input more tasks -->
+	<div class="row" id="form">
+		<h3>Add a task:</h3>
+		<form class="create-update-form" action="/" method="POST">
+
+		  <div class="form-group">
+		    <input type="text" name="task_name">
+		  </div>
+
+		  <button type="submit">Add</button>
+		</form>
+	</div>
+</div>
