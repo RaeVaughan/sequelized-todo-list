@@ -16,12 +16,12 @@ var task = {
     orm.updateOne("tasks", objColVals, condition, function(res) {
       cb(res);
     });
+  },
+  delete: function(condition, cb) {
+    orm.delete("tasks", condition, function(res) {
+      cb(res);
+    });
   }
-  // delete: function(condition, cb) {
-  //   orm.delete("cats", condition, function(res) {
-  //     cb(res);
-  //   });
-  // }
 };
 
 // Export the database functions for the controller
