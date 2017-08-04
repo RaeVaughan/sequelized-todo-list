@@ -8,7 +8,8 @@ var router = express.Router();
 
 //get all tasks
 router.get("/", function(req, res) {
-  task.all(function(data) {
+	debugger
+  task.selectAll(function(data) {
     var hbsObject = {
       tasks: data
     };
@@ -19,7 +20,7 @@ router.get("/", function(req, res) {
 
 //insert a task
 router.post("/", function(req, res) {
-  task.create([
+  task.insertOne([
     "task_name", "completed"
   ], [
     req.body.task_name, req.body.completed
@@ -34,7 +35,7 @@ router.put("/:id", function(req, res) {
 
   console.log("condition", condition);
 
-  task.update({
+  task.updateOne({
     completed: req.body.completed
   }, condition, function() {
     res.redirect("/");

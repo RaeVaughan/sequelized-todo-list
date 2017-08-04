@@ -2,17 +2,18 @@
 var orm = require("../config/orm.js");
 
 var task = {
-  all: function(cb) {
+  selectAll: function(cb) {
+    debugger
     orm.selectAll("tasks", function(res) {
       cb(res);
     });
   },
-  create: function(cols, vals, cb) {
+  insertOne: function(cols, vals, cb) {
     orm.insertOne("tasks", cols, vals, function(res) {
       cb(res);
     });
   },
-  update: function(objColVals, condition, cb) {
+  updateOne: function(objColVals, condition, cb) {
     orm.updateOne("tasks", objColVals, condition, function(res) {
       cb(res);
     });

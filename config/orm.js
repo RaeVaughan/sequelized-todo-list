@@ -14,7 +14,9 @@ function printQuestionMarks(num) {
 // Helper function for SQL syntax
 function objToSql(ob) {
   var arr = [];
-
+  console.log("ob: ", ob);
+  console.log("Object.hasOwnProperty.call(ob, completed)");
+  console.log(Object.hasOwnProperty.call(ob, "completed"));
   for (var key in ob) {
     if (Object.hasOwnProperty.call(ob, key)) {
       arr.push(key + "=" + ob[key]);
@@ -27,6 +29,7 @@ function objToSql(ob) {
 // Object for all SQL statement functions
 var orm = {
   selectAll: function(tableInput, cb) {
+  	debugger
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
       if (err) {
@@ -54,10 +57,10 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
+  // An example of objColVals would be {name: , completed: true}
   updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
-
+    console.log("objColVals", objColVals);
     queryString += " SET ";
     queryString += objToSql(objColVals);
     queryString += " WHERE ";
