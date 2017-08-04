@@ -8,7 +8,6 @@ var router = express.Router();
 
 //get all tasks
 router.get("/", function(req, res) {
-	debugger
   task.selectAll(function(data) {
     var hbsObject = {
       tasks: data

@@ -1,29 +1,23 @@
-// Import the orm to create functions that will interact with the database
-var orm = require("../config/orm.js");
+// Dependencies
+// Sequelize (capital) references the standard library
+var Sequelize = require("sequelize");
+// sequelize (lowercase) references connection to the DB
+var sequelize = require("../config/connection.js");
 
-var task = {
-  selectAll: function(cb) {
-    debugger
-    orm.selectAll("tasks", function(res) {
-      cb(res);
-    });
+// Creates a "Task" model that matches up with DB
+var Task = sequelize.define("task", {
+  task_name: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
-  insertOne: function(cols, vals, cb) {
-    orm.insertOne("tasks", cols, vals, function(res) {
-      cb(res);
-    });
-  },
-  updateOne: function(objColVals, condition, cb) {
-    orm.updateOne("tasks", objColVals, condition, function(res) {
-      cb(res);
-    });
-  },
-  delete: function(condition, cb) {
-    orm.delete("tasks", condition, function(res) {
-      cb(res);
-    });
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
-};
+});
 
-// Export the database functions for the controller
-module.exports = task;
+// Syncs with DB
+Task.sync();
+
+// Makes the Book Model available for other files (will also create a table)
+module.exports = Task;
