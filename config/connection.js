@@ -1,8 +1,7 @@
 var Sequelize = require("sequelize");
 
-var sequelize = new Sequelize("sequelize_library", "root", "password", {
+var sequelize = new Sequelize("sequelized_tasks_db", "root", "root", {
   host: "localhost",
-  password: "root",
   dialect: "mysql",
   pool: {
     max: 5,
