@@ -29,11 +29,9 @@ router.post("/", function(req, res) {
 
 //update a task
 router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-  console.log("condition: ", condition);
   task.update(
     { completed: req.body.completed },
-    { where: { id: condition } }
+    { where: { id: req.params.id } }
   )
   .then(function() {
     res.redirect("/");
@@ -42,11 +40,9 @@ router.put("/:id", function(req, res) {
 });
 
 //delete a task
-router.delete("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-  
+router.delete("/:id", function(req, res) { 
   task.destroy({
-    where: { id: condition }
+    where: { id: req.params.id }
   }).then(function() {
     res.redirect("/");
   });

@@ -19,5 +19,5 @@ var Task = sequelize.define("task", {
 // Syncs with DB
 Task.sync();
 
-// Makes the Book Model available for other files (will also create a table)
+// Makes the model available for other files (will also create a table)
 module.exports = Task;
