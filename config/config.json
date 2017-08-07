@@ -16,7 +16,7 @@
   "production": {
     "username": "t9boq5wba7mo1ttm",
     "password": "sw25clnuh53wc120",
-    "database": "sequelized_tasks_db",
+    "database": "vvufic98ye0mzdv1",
     "host": "h40lg7qyub2umdvb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
